@@ -17,7 +17,7 @@
 	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-/* $Id$ */
+/* $Id: ifdhandler.c 6819 2014-01-07 14:12:27Z rousseau $ */
 
 #include <stdio.h>
 #include <string.h>
@@ -583,6 +583,15 @@ EXTERNAL RESPONSECODE IFDHGetCapabilities(DWORD Lun, DWORD Tag,
 					/* not supported */
 					*Length = 0;
 				}
+			}
+			break;
+
+		case SCARD_ATTR_MAX_IFSD:
+			{
+					_ccid_descriptor *ccid_desc;
+					ccid_desc = get_ccid_descriptor(reader_index);
+					*Length = sizeof(int);
+					*(uint32_t*)Value = ccid_desc->dwMaxIFSD;
 			}
 			break;
 
