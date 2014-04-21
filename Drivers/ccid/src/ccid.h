@@ -79,6 +79,10 @@ typedef struct
 	 */
 	char bCurrentSlotIndex;
 
+	int dwMaximumClock;
+	int dwNumClockSupported;
+	int dwDataRate;
+	int dwMechanical;
 	/*
 	 * The array of data rates supported by the reader
 	 */

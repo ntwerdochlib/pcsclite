@@ -588,13 +588,36 @@ EXTERNAL RESPONSECODE IFDHGetCapabilities(DWORD Lun, DWORD Tag,
 
 		case SCARD_ATTR_MAX_IFSD:
 			{
-					_ccid_descriptor *ccid_desc;
-					ccid_desc = get_ccid_descriptor(reader_index);
-					*Length = sizeof(int);
-					*(uint32_t*)Value = ccid_desc->dwMaxIFSD;
+				_ccid_descriptor *ccid_desc;
+				ccid_desc = get_ccid_descriptor(reader_index);
+				*Length = sizeof(int);
+				*(uint32_t*)Value = ccid_desc->dwMaxIFSD;
 			}
 			break;
 
+		case SCARD_ATTR_MAX_CLK:
+			{
+				_ccid_descriptor *ccid_desc;
+				ccid_desc = get_ccid_descriptor(reader_index);
+				*Length = sizeof(int);
+				*(uint32_t*)Value = ccid_desc->dwMaximumClock;
+			}
+			break;
+
+		case SCARD_ATTR_MAX_DATA_RATE:
+			{
+				_ccid_descriptor *ccid_desc;
+				ccid_desc = get_ccid_descriptor(reader_index);
+				*Length = sizeof(int);
+				*(uint32_t*)Value = ccid_desc->dwMaxDataRate;
+			}
+			break;
+
+		case SCARD_ATTR_POWER_MGMT_SUPPORT:
+		case SCARD_ATTR_SUPRESS_T1_IFS_REQUEST:
+		case SCARD_ATTR_SYNC_PROTOCOL_TYPES:
+		case SCARD_ATTR_USER_AUTH_INPUT_DEVICE:
+		case SCARD_ATTR_USER_TO_CARD_AUTH_DEVICE:
 		default:
 			return_value = IFD_ERROR_TAG;
 	}

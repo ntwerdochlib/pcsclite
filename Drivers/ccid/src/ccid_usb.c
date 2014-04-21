@@ -625,6 +625,10 @@ again:
 				usbDevice[reader_index].ccid.readerID =
 					(desc.idVendor << 16) + desc.idProduct;
 				usbDevice[reader_index].ccid.dwFeatures = dw2i(device_descriptor, 40);
+				usbDevice[reader_index].ccid.dwMaximumClock = dw2i(device_descriptor, 14);
+				usbDevice[reader_index].ccid.dwNumClockSupported = dw2i(device_descriptor, 18);
+				usbDevice[reader_index].ccid.dwMechanical = dw2i(device_descriptor, 36);
+				usbDevice[reader_index].ccid.dwDataRate = dw2i(device_descriptor, 19);
 				usbDevice[reader_index].ccid.wLcdLayout =
 					(device_descriptor[51] << 8) + device_descriptor[50];
 				usbDevice[reader_index].ccid.bPINSupport = device_descriptor[52];
